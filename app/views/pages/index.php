@@ -1,7 +1,8 @@
 <?php require APPROOT . '/views/inc/header.php'; ?>
-    <h1><?php print $data['title']; ?></h1>
-    <h3>This is the ScarlettMVC PHP Framework.</h3>
-    <h4>Start building your next PHP MVC project instantly
-        with this lightweight framework.</h4>
-    <p>Please refer to the documentation for how to properly use ScarlettMVC.</p>
+    <div class="jumbotron jumbotron-fluid text-center">
+        <div class="container">
+            <h1 class="display-3 pb-3"><?php print $data['title']; ?></h1>
+            <p class="lead"><?php print $data['description']; ?></p>
+        </div>
+    </div>
 <?php require APPROOT . '/views/inc/footer.php'; ?>
