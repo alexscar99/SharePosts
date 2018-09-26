@@ -1,18 +1,15 @@
 <?php
-    // DB Params
-    define('DB_HOST', 'localhost');
-    define('DB_USER', '-YOUR_USERNAME-');
-    define('DB_PASS', '-YOUR_PASSWORD-');
-    define('DB_NAME', '-YOUR_DBNAME-');
+    // Create switch statement to use either dev_config or prod_config
+    // files based off of environment
 
-     /*
-      * Use global constant __FILE__ and dirname function
-      * to navigate to `/app`
-     */
-    define('APPROOT', dirname(dirname(__FILE__)));
-
-    // Define constant URLROOT with your url
-    define('URLROOT', '-YOUR_URL-');
-
-    // Define constant SITENAME with your sitename
-    define('SITENAME', '-YOUR_SITENAME-');
+    switch ($_SERVER['SERVER_NAME']) {
+        case 'localhost':
+            require_once 'dev_config.php';
+            break;
+        // replace production-url with the server name for your production site
+        case 'production-url':
+            require_once 'production_config.php';
+            break;
+        default:
+            // Error occurred
+    }
