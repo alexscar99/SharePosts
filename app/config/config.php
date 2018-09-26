@@ -12,7 +12,7 @@
     define('APPROOT', dirname(dirname(__FILE__)));
 
     // Define constant URLROOT with your url
-    define('URLROOT', 'http://localhost/SharePosts');
+    define('URLROOT', '-YOUR_URL-');
 
     // Define constant SITENAME with your sitename
-    define('SITENAME', 'SharePosts');
+    define('SITENAME', '-YOUR_SITENAME-');
