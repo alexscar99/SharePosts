@@ -23,7 +23,7 @@
                         </div>
                         <div class="col">
                             <a href="<?php print URLROOT;?>/users/register" class="btn btn-light btn-block">
-                                Don't have an account yet? Register now
+                                Don't have an account yet?
                             </a>
                         </div>
                     </div>
