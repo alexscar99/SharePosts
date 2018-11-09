@@ -1,0 +1,2 @@
+<?php
+    // PROD CONFIG

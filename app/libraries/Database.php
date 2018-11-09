@@ -1,14 +1,10 @@
 <?php
     /*
-     *************************************************
-     *************************************************
-     *     PDO Database Class                        *
-     *     Connect to database                       *
-     *     Create prepared statements                *
-     *     Bind Values                               *
-     *     Return rows and results                   *
-     *************************************************
-     *************************************************
+        PDO DB Class:
+        - Connect                
+        - Create prepared statements              
+        - Bind values                     
+        - Return rows and results           
     */
 
     class Database
@@ -24,14 +20,14 @@
 
         public function __construct()
         {
-            // Set DSN (Database Source Name)
+            // set DSN (Database Source Name)
             $dsn = 'mysql:host=' . $this->host . ';dbname=' . $this->dbname;
             $options = array(
                 PDO::ATTR_PERSISTENT => true,
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
             );
 
-            // Create PDO instance
+            // create PDO instance
             try {
                 $this->dbHandler = new PDO($dsn, $this->user, $this->pass, $options);
             } catch (PDOException $e) {
@@ -40,13 +36,13 @@
             }
         }
 
-        // Prepare statement with query
+        // prepare statement with query
         public function query($sql)
         {
             $this->stmt = $this->dbHandler->prepare($sql);
         }
 
-        // Bind values
+        // bind values
         public function bind($param, $value, $type = null)
         {
             if (isnull($type)) {
@@ -69,20 +65,20 @@
             $this->stmt->bindValue($param, $value, $type);
         }
 
-        // Execute the prepared statement
+        // execute the prepared statement
         public function execute()
         {
             return $this->stmt->execute();
         }
 
-        // Get result set as an array of objects
+        // get result, set as an array of objects
         public function resultSet()
         {
             $this->execute();
             return $this->stmt->fetchAll(PDO::FETCH_OBJ);
         }
 
-        // Get single record as object
+        // get single record as object
         public function single()
         {
             $this->execute();
