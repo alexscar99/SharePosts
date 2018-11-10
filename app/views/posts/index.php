@@ -19,7 +19,7 @@
                 Written by <?php print $post->name; ?> on <?php print $post->postCreated; ?>
             </div>
             <p class="card-text"><?php print $post->body; ?></p>
-            <a href="<?php URLROOT; ?>/posts/show/<?php print $post->postId; ?>" class="btn btn-dark">
+            <a href="<?php print URLROOT; ?>/posts/show/<?php print $post->postId; ?>" class="btn btn-dark">
                 More
             </a>
         </div>
