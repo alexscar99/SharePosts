@@ -14,7 +14,7 @@
         private $pass = DB_PASS;
         private $dbname = DB_NAME;
 
-        private $dbHandler;
+        private $dbh;
         private $stmt;
         private $error;
 
@@ -29,7 +29,7 @@
 
             // create PDO instance
             try {
-                $this->dbHandler = new PDO($dsn, $this->user, $this->pass, $options);
+                $this->dbh = new PDO($dsn, $this->user, $this->pass, $options);
             } catch (PDOException $e) {
                 $this->error = $e->getMessage();
                 print $this->error;
@@ -39,13 +39,13 @@
         // prepare statement with query
         public function query($sql)
         {
-            $this->stmt = $this->dbHandler->prepare($sql);
+            $this->stmt = $this->dbh->prepare($sql);
         }
 
         // bind values
         public function bind($param, $value, $type = null)
         {
-            if (isnull($type)) {
+            if (is_null($type)) {
                 switch (true) {
                     case is_int($value):
                         $type = PDO::PARAM_INT;

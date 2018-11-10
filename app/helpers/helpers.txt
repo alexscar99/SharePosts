@@ -1,3 +1,0 @@
-Insert any PHP files with helper functions for your application here.
-
-NOTE: This .txt file is unnecessary once you have downloaded the framework or cloned it from the git repository.

@@ -3,12 +3,11 @@
     {
         public function __construct()
         {
-
+            $this->userModel = $this->model('User');
         }
 
         public function register()
         {
-            // check for post
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 // sanitize POST data
                 $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
@@ -31,6 +30,11 @@
 
                 if (empty($data['email'])) {
                     $data['email_err'] = 'Please enter your email';
+                } else {
+                    // show err if account already exists with that email
+                    if ($this->userModel->findUserByEmail($data['email'])) {
+                        $data['email_err'] = 'Email is already taken';
+                    }
                 }
 
                 if (empty($data['password'])) {
@@ -49,13 +53,18 @@
 
                 // ensure errors are empty
                 if (empty($data['email_err']) && empty($data['name_err']) && empty($data['password_err']) && empty($data['confirm_password_err'])) {
-                    die('SUCCESS');
+                    $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+
+                    if ($this->userModel->register($data)) {
+                        redirect('users/login');
+                    } else {
+                        die('Something went wrong');
+                    }
+
                 } else {
                     // load view with errors
                     $this->view('users/register', $data);
                 }
-
-                
 
             } else {
                 $data = [
@@ -69,7 +78,7 @@
                     'confirm_password_err' => ''
                 ];
 
-                // load view
+                // load view with empty data fields
                 $this->view('users/register', $data);
             }
         }
@@ -113,7 +122,7 @@
                     'password_err' => '',
                 ];
 
-                // load view
+                // load view with empty data
                 $this->view('users/login', $data);
             }
         }

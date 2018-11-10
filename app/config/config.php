@@ -8,5 +8,5 @@
             require_once 'prod_config.php';
             break;
         default:
-            // Error occurred
+            print 'Error occurred';
     }
