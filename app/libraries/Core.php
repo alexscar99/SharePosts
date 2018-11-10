@@ -51,7 +51,6 @@
                 $url = rtrim($_GET['url'], '/');
                 // sanitize value as a url
                 $url = filter_var($url, FILTER_SANITIZE_URL);
-                // break url into an array
                 $url = explode('/', $url);
 
                 return $url;

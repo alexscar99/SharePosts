@@ -61,7 +61,6 @@
                 }
             }
 
-            // PDO statements have bindValues function to bind a value to a parameter
             $this->stmt->bindValue($param, $value, $type);
         }
 
